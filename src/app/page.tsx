@@ -1,7 +1,6 @@
 import MainNews from "@/components/homepage/MainNews";
-import Marquee from "@/components/homepage/Marquee";
 import MostRead from "@/components/homepage/MostRead";
-import SelectedNewsCard from "@/components/homepage/SelectedNewsCard";
+import SelectedNewsCard from "@/components/shared/SelectedNewsCard";
 import { getNewsSections } from "@/lib/news";
 import { INewsSection } from "@/types/news";
 
@@ -12,7 +11,6 @@ export default async function Home() {
 
   return (
     <div>
-      <Marquee />
       <div className="grid grid-cols-3 max-w-7xl mx-auto gap-4 mt-5">
         <div className="col-span-2">
           {mainSection && 

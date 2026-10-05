@@ -8,8 +8,8 @@ const SelectedNewsCard = ({news}: {news: INewsItem}) => {
         : null;
 
     return (
-        <section>
-            <Link className="group block overflow-hidden rounded-lg border border-neutral-200 bg-white" href={news.link}>
+        <section className="h-full">
+            <Link className="group flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white" href={`/news/${news.id}`} >
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100">
                     {news.imageUrl && (
                         <figure>

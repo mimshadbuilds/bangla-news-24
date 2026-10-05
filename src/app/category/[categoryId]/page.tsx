@@ -1,13 +1,20 @@
+import SelectedNewsCard from "@/components/shared/SelectedNewsCard";
+import { getCategory } from "@/lib/news";
+import { ICategoryResponse } from "@/types/news";
 
-const CategoryNews = async ({ params }) => {
+const CategoryNews = async ({params} : { params: Promise<{ categoryId: string }> }) => {
     const {categoryId} = await params;
-    const res = await fetch(`https://news-api-v2.vercel.app/api/category/${categoryId}`);
-    const data = await res.json();
-    const news = data.data;
-    console.log(news)
+    const data: ICategoryResponse = await getCategory(categoryId, 9);
+    const cateNews = data.data;
+
     return (
         <div>
-            {news.length}
+            <h1 className="text-2xl font-bold border-b-2 border-red-700 mt-3 p-1">{data.title}</h1>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-3">
+                {cateNews.map(news => 
+                <SelectedNewsCard key={news.id} news={news} />
+                )}
+            </div>
         </div>
     );
 };
