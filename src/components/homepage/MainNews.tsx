@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const MainNews = ({news}: {news: INewsSection}) => {
     const firstNews = news.articles[0];
-    const otherNews: INewsItem[] = news.articles.slice(1);
+    const otherNews: INewsItem[] = news.articles.slice(1, 5);
 
     if (!firstNews) {
         return null;
@@ -15,7 +15,7 @@ const MainNews = ({news}: {news: INewsSection}) => {
         : null;
 
     return (
-        <section className="grid gap-4 lg:grid-cols-2">
+        <section className="grid gap-4 h-auto lg:grid-cols-2">
             <Link className="group block overflow-hidden rounded-lg border border-neutral-200 bg-white" href={firstNews.link}>
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100">
                     {firstNews.imageUrl && (
@@ -30,7 +30,7 @@ const MainNews = ({news}: {news: INewsSection}) => {
                     )}
                 </div>
                 <div className="p-4">
-                    <span className="text-xs font-semibold text-red-700">প্রধান খবর</span>
+                    <span className="text-xs font-semibold text-red-700">{firstNews.category}</span>
                     <h2 className="mt-1 text-xl font-bold leading-snug text-neutral-900 group-hover:text-red-700">{firstNews.title}</h2>
                     <p className="mt-2 line-clamp-3 text-sm text-neutral-600">{firstNews.description}</p>
                     {published && <p className="mt-2 text-xs text-neutral-400">{published}</p>}
@@ -42,7 +42,7 @@ const MainNews = ({news}: {news: INewsSection}) => {
                 <li key={item.id}>
                     <Link className="flex items-start justify-between gap-3 p-3 hover:bg-neutral-50" href={item.link}>
                         <div>
-                            <span className="text-xs font-semibold text-red-700">প্রধান খবর</span>
+                            <span className="text-xs font-semibold text-red-700">{item.category}</span>
                                 <h3 className="mt-0.5 font-semibold leading-snug text-neutral-900">
                                     {item.title}
                                 </h3>
