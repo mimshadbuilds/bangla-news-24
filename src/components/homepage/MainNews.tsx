@@ -1,10 +1,14 @@
-import { INewsItem, INewsSection } from "@/types/news";
+import { INewsSection } from "@/types/news";
 import Image from "next/image";
 import Link from "next/link";
 
 const MainNews = ({news}: {news: INewsSection}) => {
-    const firstNews = news.articles[0];
-    const otherNews: INewsItem[] = news.articles.slice(1, 5);
+    const articles = news.articles.filter(
+        (item) => item.type === "article" && !item.isLive
+    );
+
+    const firstNews = articles[0];
+    const otherNews = articles.slice(1, 5);
 
     if (!firstNews) {
         return null;
@@ -16,7 +20,7 @@ const MainNews = ({news}: {news: INewsSection}) => {
 
     return (
         <section className="grid gap-4 h-auto lg:grid-cols-2">
-            <Link className="group block overflow-hidden rounded-lg border border-neutral-200 bg-white" href={firstNews.link}>
+            <Link className="group block overflow-hidden rounded-lg border border-neutral-200 bg-white" href={`/news/${firstNews.id}`}>
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100">
                     {firstNews.imageUrl && (
                         <figure>
@@ -38,13 +42,13 @@ const MainNews = ({news}: {news: INewsSection}) => {
             </Link>
 
             <ul className="flex flex-col divide-y divide-neutral-200 rounded-lg border border-neutral-200 bg-white">
-                {otherNews.map((item) => (
-                <li key={item.id}>
-                    <Link className="flex items-start justify-between gap-3 p-3 hover:bg-neutral-50" href={item.link}>
+                {otherNews.map((on) => (
+                <li key={on.id}>
+                    <Link className="flex items-start justify-between gap-3 p-3 hover:bg-neutral-50" href={`/news/${on.id}`}>
                         <div>
-                            <span className="text-xs font-semibold text-red-700">{item.category}</span>
+                            <span className="text-xs font-semibold text-red-700">{on.category}</span>
                                 <h3 className="mt-0.5 font-semibold leading-snug text-neutral-900">
-                                    {item.title}
+                                    {on.title}
                                 </h3>
                         </div>
                     </Link>

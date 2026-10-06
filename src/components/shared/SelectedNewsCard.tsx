@@ -6,10 +6,14 @@ const SelectedNewsCard = ({news}: {news: INewsItem}) => {
     const published = news.firstPublished
         ? new Date(news.firstPublished).toLocaleDateString("bn-BD", { dateStyle: "full" })
         : null;
+    const newsHref =
+        news.type === "article" && !news.isLive
+            ? `/news/${news.id}`
+            : news.link;
 
     return (
         <section className="h-full">
-            <Link className="group flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white" href={`/news/${news.id}`} >
+            <Link className="group flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white" href={newsHref} >
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100">
                     {news.imageUrl && (
                         <figure>

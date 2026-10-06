@@ -3,6 +3,7 @@ import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/shared/Header";
 import Marquee from "@/components/homepage/Marquee";
+import ToastProvider from "./ToastProvider";
 
 const notoserifbengali = Noto_Serif_Bengali({
   subsets: ["bengali", "latin"],
@@ -20,11 +21,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en" data-theme="light"
       className={`${notoserifbengali.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <ToastProvider>
         <Header />
         <Marquee />
         <main className="max-w-7xl mx-auto">
           {children}
         </main>
+        </ToastProvider>
         </body>
     </html>
   );

@@ -1,2 +1,5 @@
 @import "tailwindcss";
-@plugin "../../node_modules/daisyui";
+@plugin "../../node_modules/daisyui"{
+    exclude: toast;
+}
+@import "@heroui/styles";

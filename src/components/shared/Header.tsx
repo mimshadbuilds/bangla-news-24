@@ -1,10 +1,16 @@
+
 import Image from 'next/image';
 import NavLinks from './NavLinks';
+import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
+import AuthButtons from './AuthButton';
 
 const Header = () => {
+    
     const date = new Date().toLocaleDateString('bn-BD', {
         dateStyle: 'full',
     });
+
     return (
     <section className='border-b border-neutral-200 bg-white'>    
             <header className='relative max-w-7xl mx-auto px-4 py-4'>
@@ -16,8 +22,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div className='absolute right-4 flex gap-3 text-sm top-4'>
-                    <button className='btn btn-outline border-none'>সাইন ইন</button>
-                    <button className='btn bg-red-700 text-white'>সাইন আপ</button>
+                    <AuthButtons />
                 </div>
                 <NavLinks />
             </header>

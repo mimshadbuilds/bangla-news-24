@@ -100,12 +100,13 @@ export async function getCategory(
 }
 
 export async function getArticle(id: string): Promise<IArticleResponse> {
-    const res = await fetch(`${BASE_URL}/api/article/${id}`, {
+    const res = await fetch(`${BASE_URL}/api/article/${encodeURIComponent(id)}`, {
         cache: "no-store",
     });
 
     if (!res.ok) {
-        throw new Error(`Failed to fetch article (${res.status})`);
+        const error = await res.text();
+        throw new Error(`Failed to fetch article (${res.status}): ${error}`);
     }
 
     return res.json();

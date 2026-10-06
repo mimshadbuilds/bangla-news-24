@@ -2,11 +2,20 @@ import { ArticleBody } from "@/components/shared/ArticlesCard";
 import { getArticle } from "@/lib/news";
 import { IArticleResponse } from "@/types/news";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 const DetailsNews = async ({ params }: { params: Promise<{ newsId: string }>;
 }) => {
     const { newsId } = await params;
-    const data: IArticleResponse = await getArticle(newsId);
+
+    let data: IArticleResponse;
+
+    try {
+        data = await getArticle(newsId);
+    } catch {
+        notFound();
+    }
+    
     const news = data.data;
 
     return (
@@ -20,8 +29,7 @@ const DetailsNews = async ({ params }: { params: Promise<{ newsId: string }>;
                         block.model.blocks.map((paragraph, paragraphIndex) => (
                             <p
                                 key={`${index}-${paragraphIndex}`}
-                                className="mt-5 text-[16px] leading-[1.7] text-neutral-600"
-                            >
+                                className="mt-5 text-[16px] leading-[1.7] text-neutral-600">
                                 {paragraph.model.text}
                             </p>
                         ))
