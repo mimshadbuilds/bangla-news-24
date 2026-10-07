@@ -17,6 +17,10 @@ const DetailsNews = async ({ params }: { params: Promise<{ newsId: string }>;
     }
     
     const news = data.data;
+    
+    if(!news){
+        notFound();
+    }
 
     return (
         <main className="mx-auto w-full max-w-[620px] px-4 py-8 sm:px-0 sm:py-10">

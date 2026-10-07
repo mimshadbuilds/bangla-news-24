@@ -1,7 +1,7 @@
 'use client';
 
-import { signIn } from '@/lib/auth-client';
-import {Button, Description, FieldError, Form, InputGroup, Label, TextField, toast} from "@heroui/react";
+import { authClient, signIn } from '@/lib/auth-client';
+import { Button, Description, FieldError, Form, InputGroup, Label, TextField, toast } from "@heroui/react";
 import React, { useState } from 'react';
 import {Eye, EyeSlash} from "@gravity-ui/icons";
 import Link from 'next/link';
@@ -28,13 +28,23 @@ const SignInPage = () => {
             toast.danger(error.message);
             return;
         }
-        toast.success("সাইন ইন সফল হয়েছে!");
+
+        if(data){
+            toast.success("সাইন ইন সফল হয়েছে!");
+        }
+
     }
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+    });
+}
     return (
         <div className='flex items-center flex-col justify-center my-20'>
             <h1 className="mb-4 text-center text-2xl font-bold text-red-700">সাইন ইন</h1>
             <Form className="flex max-w-md flex-col gap-4"
-            render={(props) => <form {...props} data-custom="foo" />}
+            render= {(props) => <form {...props} data-custom="foo" />}
             onSubmit={handleSignIn}>
             <TextField
                 isRequired
@@ -101,8 +111,12 @@ const SignInPage = () => {
                 Reset
                 </Button> */}
             </div>
-            <p className='text-center'><small>পাসওয়ার্ড ভুলে গেছেন? <Link href="/forgot-password" 
-            className="text-red-700 hover:underline">এখানে যান</Link></small></p>
+                <p className='text-center'><small>পাসওয়ার্ড ভুলে গেছেন? <Link href="/forgot-password" 
+                className="text-red-700 hover:underline">এখানে যান</Link></small></p>
+                <div className='text-center py-1 flex flex-col items-center justify-center gap-2'>
+                    <p>or</p>
+                    <Button onClick={handleGoogleSignIn} type="button" className="font-semibold text-white bg-red-700">Sign In with Google</Button>
+                </div>
             </Form>
         </div>
     );

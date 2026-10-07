@@ -1,7 +1,7 @@
 'use client';
 
-import { authClient, signUp } from "@/lib/auth-client";
-import { Button, Description, FieldError, Form, Input, Label, TextField, toast } from "@heroui/react";
+import { signUp } from "@/lib/auth-client";
+import { Description, FieldError, Form, Input, Label, TextField, toast } from "@heroui/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -31,12 +31,6 @@ const SignUpPage = () => {
         if(error) {
             toast.danger("সাইন আপ অসফল! এই ইমেইলে ইতিমদ্ধে ইউজার আছে, নতুন ইমেইল দিয়ে চেস্টা করুন।" )
         }
-    }
-    const handleGoogleSignIn = async () => {
-        await authClient.signIn.social({
-            provider: "google",
-            callbackURL: "/",
-        });
     }
 
     return (
@@ -121,10 +115,6 @@ const SignUpPage = () => {
                     </Button> */}
                 </div>
                 <p className="mt-2 text-center text-sm text-neutral-600">অ্যাকাউন্ট আছে? <Link className="font-semibold text-red-700 hover:underline" href='/sign-in'>সাইন ইন করুন</Link> </p>
-                <div className='text-center py-1 flex flex-col items-center justify-center gap-2'>
-                    <p>or</p>
-                <Button onClick={handleGoogleSignIn} type="button" className="font-semibold text-white bg-red-700">Sign In with Google</Button>
-                </div>
             </Form>
         </div>
     );

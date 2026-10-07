@@ -6,6 +6,7 @@ const SelectedNewsCard = ({news}: {news: INewsItem}) => {
     const published = news.firstPublished
         ? new Date(news.firstPublished).toLocaleDateString("bn-BD", { dateStyle: "full" })
         : null;
+        
     const newsHref =
         news.type === "article" && !news.isLive
             ? `/news/${news.id}`

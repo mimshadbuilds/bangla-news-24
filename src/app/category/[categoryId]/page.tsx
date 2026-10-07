@@ -1,11 +1,23 @@
 import SelectedNewsCard from "@/components/shared/SelectedNewsCard";
 import { getCategory } from "@/lib/news";
 import { ICategoryResponse } from "@/types/news";
+import { notFound } from "next/navigation";
 
 const CategoryNews = async ({params} : { params: Promise<{ categoryId: string }> }) => {
     const {categoryId} = await params;
-    const data: ICategoryResponse = await getCategory(categoryId, 9);
+    let data: ICategoryResponse;
+
+    try {
+        data = await getCategory(categoryId, 9);
+    } catch{
+        notFound();
+    }
+
     const cateNews = data.data;
+
+    if(!cateNews){
+        notFound()
+    }
 
     return (
         <div>

@@ -1,8 +1,5 @@
-
 import Image from 'next/image';
 import NavLinks from './NavLinks';
-import Link from 'next/link';
-import { authClient } from '@/lib/auth-client';
 import AuthButtons from './AuthButton';
 
 const Header = () => {
