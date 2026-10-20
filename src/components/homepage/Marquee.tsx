@@ -1,5 +1,5 @@
 import { getNews } from "@/lib/news";
-import MarqueeText from "react-marquee-text"
+import MarqueeTicker from "./MarqueeTicker";
 import "react-marquee-text/dist/styles.css"
 import Link from 'next/link'
 
@@ -15,9 +15,9 @@ const Marquee = async () => {
         <div className='overflow-hidden sticky top-0 z-50 bg-red-700 text-white'>    
             <div className='flex items-stretch max-w-7xl mx-auto'>
                 <span className='z-10 flex shrink-0 items-center gap-1 bg-red-800 px-4 py-2 text-sm font-bold'>সর্বশেষ</span>
-                <div className='group flex flex-1 overflow-hidden py-2'>
-                    <div className='flex shrink-0 whitespace-nowrap px-4 text-sm group-hover:[animation-play-state:paused]'>
-                        <MarqueeText direction='right' duration={80} pauseOnHover={true}>
+                <div className='flex min-w-0 flex-1 overflow-hidden py-2'>
+                    <div className='w-full min-w-0 px-4 text-sm'>
+                        <MarqueeTicker>
                             {headlines.map((latest) =>
                             <Link href={`/news/${latest.id}`} key={latest.id}>
                             <span>
@@ -27,7 +27,7 @@ const Marquee = async () => {
                             </span>
                             </Link>
                                 )}
-                        </MarqueeText>
+                        </MarqueeTicker>
                     </div>
                 </div>
             </div>
