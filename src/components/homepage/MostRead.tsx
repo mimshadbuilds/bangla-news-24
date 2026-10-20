@@ -2,11 +2,21 @@ import { getMostRead } from "@/lib/news";
 import Link from "next/link";
 
 const MostRead = async () => {
-    const data = await getMostRead();
+    const data = await getMostRead().catch(() => null);
 
-    const mostread = data.data.filter(
-        (item) => item.type === "article" && !item.isLive
-    );
+    if (!data) {
+        return null;
+    }
+
+    const mostread = Array.isArray(data.data)
+        ? data.data.filter(
+              (item) => item.type === "article" && !item.isLive
+          )
+        : [];
+
+    if (mostread.length === 0) {
+        return null;
+    }
 
     return (
         <div className="space-y-2 rounded-xl border border-gray-200 px-5 py-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">

@@ -4,15 +4,15 @@ import "react-marquee-text/dist/styles.css"
 import Link from 'next/link'
 
 const Marquee = async () => {
-    const data = await getNews(10);
-    const headlines = data.data;
+    const data = await getNews(10).catch(() => null);
+    const headlines = Array.isArray(data?.data) ? data.data : [];
 
-    if (!Array.isArray(headlines)) {
-        throw new Error("News API returned an invalid headlines list.");
+    if (headlines.length === 0) {
+        return null;
     }
 
     return (
-        <div className='overflow-hidden sticky top-0 z-50 bg-red-700 text-white'>    
+        <div className='sticky top-0 z-50 overflow-hidden bg-red-700 text-white shadow-sm'>
             <div className='flex items-stretch max-w-7xl mx-auto'>
                 <span className='z-10 flex shrink-0 items-center gap-1 bg-red-800 px-4 py-2 text-sm font-bold'>সর্বশেষ</span>
                 <div className='flex min-w-0 flex-1 overflow-hidden py-2'>
@@ -26,7 +26,7 @@ const Marquee = async () => {
                                 </span>
                             </span>
                             </Link>
-                                )}
+                            )}
                         </MarqueeTicker>
                     </div>
                 </div>

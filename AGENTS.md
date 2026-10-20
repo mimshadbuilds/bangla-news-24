@@ -26,6 +26,7 @@ Bengali-language news portal: Next.js App Router frontend reading from a public 
 - Auth DB name `news24-auth-db` is hardcoded in `src/lib/db.ts` (shared by `src/lib/auth.ts`); the Better Auth handler is `src/app/api/auth/[...all]/route.ts`.
 - Personalized data lives in the same database: `bookmarks` and `history` collections, written only through `/api/bookmarks` and `/api/history` (session-checked with `getCurrentUserId` in `src/lib/session.ts`).
 - All news comes from `https://news-api-v2.vercel.app`, hardcoded in `src/lib/news.ts`, with `cache: "no-store"` on every fetch. News is not stored in MongoDB. `getNews(limit, offset, category, query)` supports both category-title filtering and full-text search (`q`); `/search` uses the latter.
+- When the news API fails (network error, timeout, 402/5xx), `src/lib/news.ts` serves the last successful response from `.cache/news-api` (24h for news, 7d for categories). The cache is best-effort, gitignored, and only used as a fallback — never instead of a fresh request. With no cache, news pages render Bengali unavailable states instead of throwing.
 - Remote `next/image` hosts must be added to `images.remotePatterns` in `next.config.ts` (currently only `ichef.bbci.co.uk`); otherwise article images fail to render.
 - `src/app/globals.css` is the entire CSS setup: Tailwind v4 + daisyUI (`@plugin`, `toast` excluded) + HeroUI styles. daisyUI classes (`btn`, `btn-outline`) and HeroUI components are both in use.
 

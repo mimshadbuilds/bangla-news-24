@@ -1,6 +1,7 @@
 import Pagination from "@/components/shared/Pagination";
+import NewsUnavailable from "@/components/shared/NewsUnavailable";
 import SelectedNewsCard from "@/components/shared/SelectedNewsCard";
-import { getCategory } from "@/lib/news";
+import { getCategory, NewsApiError } from "@/lib/news";
 import { ICategoryResponse } from "@/types/news";
 import { notFound } from "next/navigation";
 
@@ -19,8 +20,18 @@ const CategoryNews = async ({ params, searchParams }: {
 
     try {
         data = await getCategory(categoryId, PAGE_SIZE, page);
-    } catch{
-        notFound();
+    } catch (error) {
+        if (error instanceof NewsApiError && error.status === 404) {
+            notFound();
+        }
+
+        return (
+            <NewsUnavailable
+                title="বিভাগটি এখন পাওয়া যাচ্ছে না"
+                description="সংবাদ সার্ভারে সাময়িক সমস্যা হচ্ছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।"
+                actionLabel="হোমে ফিরুন"
+            />
+        );
     }
 
     const cateNews = data.data;

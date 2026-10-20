@@ -1,9 +1,10 @@
 import { ArticleBody } from "@/components/shared/ArticlesCard";
 import BookmarkButton from "@/components/shared/BookmarkButton";
+import NewsUnavailable from "@/components/shared/NewsUnavailable";
 import ReadingTracker from "@/components/shared/ReadingTracker";
 import RelatedNews from "@/components/shared/RelatedNews";
 import ShareButtons from "@/components/shared/ShareButtons";
-import { getArticle } from "@/lib/news";
+import { getArticle, NewsApiError } from "@/lib/news";
 import { IArticleResponse, INewsItem } from "@/types/news";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -17,8 +18,18 @@ const DetailsNews = async ({ params }: { params: Promise<{ newsId: string }>;
 
     try {
         data = await getArticle(newsId);
-    } catch {
-        notFound();
+    } catch (error) {
+        if (error instanceof NewsApiError && error.status === 404) {
+            notFound();
+        }
+
+        return (
+            <NewsUnavailable
+                title="সংবাদটি এখন পাওয়া যাচ্ছে না"
+                description="সংবাদ সার্ভারে সাময়িক সমস্যা হচ্ছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।"
+                actionLabel="হোমে ফিরুন"
+            />
+        );
     }
     
     const news = data.data;

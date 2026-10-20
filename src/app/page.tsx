@@ -1,14 +1,37 @@
 import { Suspense } from "react";
 import MainNews from "@/components/homepage/MainNews";
 import MostRead from "@/components/homepage/MostRead";
+import NewsUnavailable from "@/components/shared/NewsUnavailable";
 import SelectedNewsCard from "@/components/shared/SelectedNewsCard";
 import { getNewsSections } from "@/lib/news";
 import { INewsSection } from "@/types/news";
 
 export default async function Home() {
-  const data = await getNewsSections()
-  const mainSection = data.data[0];
-  const otherSections: INewsSection[] = data.data.slice(1)
+  let sections: INewsSection[] = [];
+  let failed = false;
+
+  try {
+    const data = await getNewsSections();
+    sections = Array.isArray(data.data) ? data.data : [];
+  } catch {
+    failed = true;
+  }
+
+  if (failed) {
+    return <NewsUnavailable />;
+  }
+
+  const mainSection = sections[0];
+  const otherSections: INewsSection[] = sections.slice(1)
+
+  if (!mainSection) {
+    return (
+      <NewsUnavailable
+        title="এই মুহূর্তে কোনো সংবাদ নেই"
+        description="নতুন সংবাদ প্রকাশের সঙ্গে সঙ্গে এখানে দেখা যাবে।"
+      />
+    );
+  }
 
   return (
     <div>
