@@ -18,10 +18,8 @@ const AuthButtons = () => {
 
     if (error) {
         return (
-            <Link
-                href="/sign-in"
-                className="rounded-3xl border border-slate-50 bg-red-800 px-3 py-2 text-white hover:bg-red-500 hover:text-neutral-100"
-            >
+            <Link href="/sign-in"
+                className="rounded-3xl border border-slate-50 bg-red-800 px-3 py-2 text-white hover:bg-red-500 hover:text-neutral-100">
                 সাইন ইন
             </Link>
         );
@@ -78,7 +76,7 @@ const AuthButtons = () => {
                 Welcome,
                 <span className="text-base font-medium text-red-600">
                     {' '}
-                    {user.name}
+                    {user?.name}
                 </span>
             </p>
 

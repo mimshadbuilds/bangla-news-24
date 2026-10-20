@@ -1,6 +1,6 @@
 'use client';
 
-import { FloppyDisk, Pencil, Xmark } from '@gravity-ui/icons';
+import { Bookmark, Clock, FloppyDisk, Pencil, Xmark } from '@gravity-ui/icons';
 import {
     Avatar,
     Button,
@@ -14,6 +14,7 @@ import {
     TextField,
     toast,
 } from '@heroui/react';
+import Link from 'next/link';
 import { useState } from 'react';
 import { authClient } from '@/lib/auth-client';
 
@@ -49,7 +50,7 @@ const ProfilePage = () => {
 
     return (
         <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
-            <section className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm sm:p-6">
+            <section className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 sm:p-6">
                 {!isEditing ? (
                     <>
                         <div className="flex flex-col items-center">
@@ -64,36 +65,36 @@ const ProfilePage = () => {
                                     </svg>
                                 </Avatar.Fallback>
                             </Avatar>
-                            <h2 className="mt-4 text-xl font-semibold text-neutral-900">
+                            <h2 className="mt-4 text-xl font-semibold text-neutral-900 dark:text-neutral-100">
                                 {user?.name}
                             </h2>
-                            <p className="mt-1 text-sm text-neutral-500">
+                            <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
                                 {user?.email}
                             </p>
                         </div>
 
-                        <div className="mt-6 space-y-4 border-t border-neutral-200 pt-5">
+                        <div className="mt-6 space-y-4 border-t border-neutral-200 pt-5 dark:border-neutral-700">
                             <div>
-                                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                                     Name
                                 </p>
-                                <p className="mt-1 break-words text-sm font-medium text-neutral-800">
+                                <p className="mt-1 break-words text-sm font-medium text-neutral-800 dark:text-neutral-200">
                                     {user?.name}
                                 </p>
                             </div>
                             <div>
-                                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                                     Email
                                 </p>
-                                <p className="mt-1 break-words text-sm font-medium text-neutral-800">
+                                <p className="mt-1 break-words text-sm font-medium text-neutral-800 dark:text-neutral-200">
                                     {user?.email}
                                 </p>
                             </div>
                             <div>
-                                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                                     Created At
                                 </p>
-                                <p className="mt-1 text-sm font-medium text-neutral-800">
+                                <p className="mt-1 text-sm font-medium text-neutral-800 dark:text-neutral-200">
                                     {user?.createdAt?.toLocaleDateString()}
                                 </p>
                             </div>
@@ -108,14 +109,29 @@ const ProfilePage = () => {
                                 Edit Profile
                             </Button>
                         </div>
+
+                        <div className="mt-6 grid gap-3 border-t border-neutral-200 pt-5 dark:border-neutral-700 sm:grid-cols-2">
+                            <Link
+                                href="/bookmarks"
+                                className="flex items-center justify-center gap-2 rounded-md border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:border-red-700 hover:text-red-700 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-red-400 dark:hover:text-red-400">
+                                <Bookmark className="size-4" />
+                                সংরক্ষিত সংবাদ
+                            </Link>
+                            <Link
+                                href="/history"
+                                className="flex items-center justify-center gap-2 rounded-md border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:border-red-700 hover:text-red-700 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-red-400 dark:hover:text-red-400">
+                                <Clock className="size-4" />
+                                পড়ার ইতিহাস
+                            </Link>
+                        </div>
                     </>
                 ) : (
                     <Form className="w-full" onSubmit={handleUpdateProfile}>
                         <Fieldset>
-                            <Fieldset.Legend className="text-xl font-semibold text-neutral-900">
+                            <Fieldset.Legend className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
                                 Profile Settings
                             </Fieldset.Legend>
-                            <Description className="mt-1 text-sm text-neutral-500">
+                            <Description className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
                                 Update your profile information.
                             </Description>
 

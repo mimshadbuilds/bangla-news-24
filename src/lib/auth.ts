@@ -1,9 +1,6 @@
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { betterAuth } from "better-auth";
-import { MongoClient } from "mongodb";
-
-const client = new MongoClient(process.env.MONGODB_URL!);
-const database = client.db('news24-auth-db');
+import { database, mongoClient } from "@/lib/db";
 
 export const auth = betterAuth({
         emailAndPassword: { 
@@ -18,6 +15,6 @@ export const auth = betterAuth({
     },
     
     database: mongodbAdapter(database, {
-        client,
+        client: mongoClient,
     })
 })

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import MainNews from "@/components/homepage/MainNews";
 import MostRead from "@/components/homepage/MostRead";
 import SelectedNewsCard from "@/components/shared/SelectedNewsCard";
@@ -32,7 +33,9 @@ export default async function Home() {
           </div>
         </div>
         <div className="col-span-1">
-          <MostRead />
+          <Suspense fallback={<div className="h-64 animate-pulse rounded-xl bg-neutral-200 dark:bg-neutral-800" />}>
+            <MostRead />
+          </Suspense>
         </div>
       </div>
     </div>

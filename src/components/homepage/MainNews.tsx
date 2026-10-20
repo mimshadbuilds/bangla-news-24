@@ -20,8 +20,8 @@ const MainNews = ({news}: {news: INewsSection}) => {
 
     return (
         <section className="grid gap-4 h-auto lg:grid-cols-2">
-            <Link className="group block overflow-hidden rounded-lg border border-neutral-200 bg-white" href={`/news/${firstNews.id}`}>
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100">
+            <Link className="group block overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900" href={`/news/${firstNews.id}`}>
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
                     {firstNews.imageUrl && (
                         <figure>
                             <Image
@@ -34,20 +34,20 @@ const MainNews = ({news}: {news: INewsSection}) => {
                     )}
                 </div>
                 <div className="p-4">
-                    <span className="text-xs font-semibold text-red-700">{firstNews.category}</span>
-                    <h2 className="mt-1 text-xl font-bold leading-snug text-neutral-900 group-hover:text-red-700">{firstNews.title}</h2>
-                    <p className="mt-2 line-clamp-3 text-sm text-neutral-600">{firstNews.description}</p>
-                    {published && <p className="mt-2 text-xs text-neutral-400">{published}</p>}
+                    <span className="text-xs font-semibold text-red-700 dark:text-red-400">{firstNews.category}</span>
+                    <h2 className="mt-1 text-xl font-bold leading-snug text-neutral-900 group-hover:text-red-700 dark:text-neutral-100 dark:group-hover:text-red-400">{firstNews.title}</h2>
+                    <p className="mt-2 line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">{firstNews.description}</p>
+                    {published && <p className="mt-2 text-xs text-neutral-400 dark:text-neutral-500">{published}</p>}
                 </div>
             </Link>
 
-            <ul className="flex flex-col divide-y divide-neutral-200 rounded-lg border border-neutral-200 bg-white">
+            <ul className="flex flex-col divide-y divide-neutral-200 rounded-lg border border-neutral-200 bg-white dark:divide-neutral-800 dark:border-neutral-800 dark:bg-neutral-900">
                 {otherNews.map((on) => (
                 <li key={on.id}>
-                    <Link className="flex items-start justify-between gap-3 p-3 hover:bg-neutral-50" href={`/news/${on.id}`}>
+                    <Link className="flex items-start justify-between gap-3 p-3 hover:bg-neutral-50 dark:hover:bg-neutral-800" href={`/news/${on.id}`}>
                         <div>
-                            <span className="text-xs font-semibold text-red-700">{on.category}</span>
-                                <h3 className="mt-0.5 font-semibold leading-snug text-neutral-900">
+                            <span className="text-xs font-semibold text-red-700 dark:text-red-400">{on.category}</span>
+                                <h3 className="mt-0.5 font-semibold leading-snug text-neutral-900 dark:text-neutral-100">
                                     {on.title}
                                 </h3>
                         </div>

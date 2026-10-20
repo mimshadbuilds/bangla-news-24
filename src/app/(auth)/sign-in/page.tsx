@@ -42,7 +42,7 @@ const SignInPage = () => {
 }
     return (
         <div className='flex items-center flex-col justify-center my-20'>
-            <h1 className="mb-4 text-center text-2xl font-bold text-red-700">সাইন ইন</h1>
+            <h1 className="mb-4 text-center text-2xl font-bold text-red-700 dark:text-red-400">সাইন ইন</h1>
             <Form className="flex max-w-md flex-col gap-4"
             render= {(props) => <form {...props} data-custom="foo" />}
             onSubmit={handleSignIn}>

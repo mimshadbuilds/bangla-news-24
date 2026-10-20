@@ -5,7 +5,7 @@ export const ArticleBody = ({ body }: { body: IArticleBodyBlock[];
 }) => {
     
     return (
-        <div className="text-[16px] leading-[1.8] text-neutral-900 sm:text-[17px]">
+        <div className="text-[16px] leading-[1.8] text-neutral-900 dark:text-neutral-200 sm:text-[17px]">
             {body.map((block, index) => {
                 if (block.type === "text") {
                     return (
@@ -19,7 +19,7 @@ export const ArticleBody = ({ body }: { body: IArticleBodyBlock[];
                     return (
                         <h2
                             key={index}
-                            className="mb-4 mt-8 text-[22px] font-bold leading-[1.45] text-neutral-900">
+                            className="mb-4 mt-8 text-[22px] font-bold leading-[1.45] text-neutral-900 dark:text-neutral-100">
                             {block.text}
                         </h2>
                     );
@@ -37,7 +37,7 @@ export const ArticleBody = ({ body }: { body: IArticleBodyBlock[];
                                 className="h-auto w-full rounded-md object-cover"
                             />
                             {(block.caption || block.credit) && (
-                                <figcaption className="mt-2 text-[12px] leading-[1.6] text-neutral-500">
+                                <figcaption className="mt-2 text-[12px] leading-[1.6] text-neutral-500 dark:text-neutral-400">
                                     {block.caption}
                                     {block.credit && (
                                         <span className="ml-1">
