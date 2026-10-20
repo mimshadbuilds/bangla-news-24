@@ -13,22 +13,30 @@ const Header = () => {
 
     return (
     <section className='border-b border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950'>    
-            <header className='relative max-w-7xl mx-auto px-4 py-4'>
-                <div className='flex flex-col justify-center items-center gap-1 sm:flex-row sm:gap-2'>
-                    <Image className='w-10 h-10' height={50} width={50} alt='logo' src={'/logo.webp'} />
-                    <div>
-                        <h1 className='text-2xl font-bold'>Bangla News 24</h1>
-                        <p>{date}</p>
+            <header className='mx-auto w-full max-w-7xl px-4 py-3 sm:py-4'>
+                <div className='flex flex-wrap items-center gap-x-2 gap-y-1.5'>
+                    <div className='flex min-w-[180px] flex-1 items-center gap-2'>
+                        <Image
+                            className='h-9 w-9 shrink-0 sm:h-10 sm:w-10'
+                            height={50}
+                            width={50}
+                            alt='logo'
+                            src={'/logo.webp'}
+                        />
+                        <div className='min-w-0'>
+                            <h1 className='truncate text-base font-bold sm:text-2xl'>Bangla News 24</h1>
+                            <p className='hidden truncate text-xs text-neutral-500 dark:text-neutral-400 sm:block sm:text-sm'>{date}</p>
+                        </div>
+                    </div>
+                    <div className='ml-auto flex shrink-0 items-center gap-1.5 text-sm sm:gap-3'>
+                        <ThemeToggle />
+                        <AuthButtons />
                     </div>
                 </div>
-                <div className='absolute right-4 flex items-center gap-3 text-sm top-4'>
-                    <ThemeToggle />
-                    <AuthButtons />
-                </div>
-                <div className='mx-auto mt-3 w-full max-w-md'>
+                <div className='mx-auto mt-3 w-full sm:max-w-md'>
                     <SearchBar />
                 </div>
-                <Suspense fallback={<div className='mt-5 h-5' aria-hidden='true' />}>
+                <Suspense fallback={<div className='mt-3 h-6 sm:mt-5' aria-hidden='true' />}>
                     <NavLinks />
                 </Suspense>
             </header>

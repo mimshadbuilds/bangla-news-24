@@ -10,3 +10,12 @@
     --font-sans: var(--font-inter), var(--font-noto-serif-bengali), ui-sans-serif, system-ui, sans-serif;
     --font-serif: var(--font-noto-serif-bengali), ui-serif, Georgia, serif;
 }
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}

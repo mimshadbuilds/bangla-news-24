@@ -19,7 +19,7 @@ const AuthButtons = () => {
     if (error) {
         return (
             <Link href="/sign-in"
-                className="rounded-3xl border border-slate-50 bg-red-800 px-3 py-2 text-white hover:bg-red-500 hover:text-neutral-100">
+                className="rounded-full bg-red-800 px-2.5 py-1 text-xs font-semibold text-white hover:bg-red-500 sm:px-3 sm:py-2 sm:text-sm">
                 সাইন ইন
             </Link>
         );
@@ -34,13 +34,13 @@ const AuthButtons = () => {
         return (
             <>
                 <Link href="/sign-in">
-                    <button className="btn btn-outline border-none">
+                    <button className="rounded-full px-2 py-1 text-xs font-semibold text-neutral-700 transition-colors hover:text-red-700 dark:text-neutral-300 dark:hover:text-red-400 sm:px-3 sm:py-2 sm:text-sm">
                         সাইন ইন
                     </button>
                 </Link>
 
                 <Link href="/sign-up">
-                    <button className="btn bg-red-700 text-white">
+                    <button className="rounded-full bg-red-700 px-2.5 py-1 text-xs font-semibold text-white transition-colors hover:bg-red-800 sm:px-3 sm:py-2 sm:text-sm">
                         সাইন আপ
                     </button>
                 </Link>
@@ -49,7 +49,7 @@ const AuthButtons = () => {
     }
 
     return (
-        <div className="mt-2 flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
             <Link href='/profile'>
                 <Avatar size="sm">
                     <Avatar.Image
@@ -72,7 +72,7 @@ const AuthButtons = () => {
                 </Avatar>
             </Link>
 
-            <p className="text-xs">
+            <p className="hidden text-xs sm:block">
                 Welcome,
                 <span className="text-base font-medium text-red-600">
                     {' '}
@@ -82,7 +82,7 @@ const AuthButtons = () => {
 
             <button
                 onClick={handleSignOut}
-                className="btn bg-red-700 text-white">
+                className="rounded-full bg-red-700 px-2.5 py-1 text-xs font-semibold text-white transition-colors hover:bg-red-800 sm:px-3 sm:py-2 sm:text-sm">
                 সাইন আউট
             </button>
         </div>

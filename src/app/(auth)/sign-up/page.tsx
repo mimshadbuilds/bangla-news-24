@@ -34,9 +34,9 @@ const SignUpPage = () => {
     }
 
     return (
-        <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center px-4 py-4">
-            <h1 className="mb-5 ml-7 text-center text-2xl font-bold text-red-700 dark:text-red-400">সাইন আপ</h1>
-                <Form className="mx-auto flex max-w-md flex-col gap-4 md:pl-20"
+        <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-6 sm:py-10">
+            <h1 className="mb-5 text-center text-2xl font-bold text-red-700 dark:text-red-400">সাইন আপ</h1>
+                <Form className="mx-auto flex w-full max-w-md flex-col gap-4"
                 onSubmit={handleSignUp}>
                 <TextField className="flex flex-col gap-1"
                     isRequired

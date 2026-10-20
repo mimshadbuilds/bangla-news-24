@@ -12,8 +12,8 @@ export default async function Home() {
 
   return (
     <div>
-      <div className="grid grid-cols-3 max-w-7xl mx-auto gap-4 mt-5">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 max-w-7xl mx-auto gap-4 mt-5 px-4 lg:grid-cols-3">
+        <div className="lg:col-span-2">
           {mainSection && 
             <MainNews news={mainSection} />
           }
@@ -21,9 +21,9 @@ export default async function Home() {
           <div className="grid gap-5 mb-5 py-4">
             {otherSections.map(section => 
               <div key={section.curationId}>
-                <h1 className="text-lg text-neutral-900 font-bold">{section.title}</h1>
+                <h1 className="text-lg text-neutral-900 font-bold dark:text-neutral-100">{section.title}</h1>
                 <div className="border-b-2 border-red-700 pb-2"></div>
-                <div className="grid grid-cols-3 gap-2 mt-3">
+                <div className="grid grid-cols-2 gap-2 mt-3 sm:grid-cols-3">
                   {section.articles.map(item => 
                     <SelectedNewsCard key={item.id} news={item} />
                   )}
@@ -32,7 +32,7 @@ export default async function Home() {
             )}
           </div>
         </div>
-        <div className="col-span-1">
+        <div className="lg:col-span-1">
           <Suspense fallback={<div className="h-64 animate-pulse rounded-xl bg-neutral-200 dark:bg-neutral-800" />}>
             <MostRead />
           </Suspense>

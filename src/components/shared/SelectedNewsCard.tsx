@@ -28,11 +28,11 @@ const SelectedNewsCard = ({news}: {news: INewsItem}) => {
                         </figure>
                     )}
                 </div>
-                <div className="p-4">
+                <div className="p-3 sm:p-4">
                     {news.category && (
                         <span className="text-xs font-semibold text-red-700 dark:text-red-400">{news.category}</span>
                     )}
-                    <h2 className="mt-1 text-xl font-bold leading-snug text-neutral-900 group-hover:text-red-700 dark:text-neutral-100 dark:group-hover:text-red-400">{news.title}</h2>
+                    <h2 className="mt-1 text-base font-bold leading-snug text-neutral-900 group-hover:text-red-700 dark:text-neutral-100 dark:group-hover:text-red-400 sm:text-xl">{news.title}</h2>
                     <p className="mt-2 line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">{news.description}</p>
                     {published && <p className="mt-2 text-xs text-neutral-400 dark:text-neutral-500">{published}</p>}
                 </div>
