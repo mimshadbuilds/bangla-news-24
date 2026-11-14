@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News-24 - Online News Portal
+
+A modern Bangla news portal built with Next.js that delivers a smooth online reading experience for users who want the latest updates across multiple categories. The platform combines a clean, responsive interface with real-time news data, user authentication, and personalized reading features.
+
+## Overview
+
+News-24 is designed to provide a fast and engaging way to browse Bangla news, read detailed articles, and save content for later. It is built for a reader-focused experience with an emphasis on accessibility, performance, and a polished modern UI.
+
+## Technologies Used
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- MongoDB
+- Better Auth
+- HeroUI
+- DaisyUI
+- Public News API
+
+## Key Features
+
+1. Real-time News Feed
+   - Browse the latest headlines and trending stories from a live news API.
+
+2. Category-Based News Exploration
+   - Explore news by category such as politics, economy, sports, entertainment, and more.
+
+3. Detailed Article View
+   - Read complete articles with rich content, images, and context-rich layout.
+
+4. User Authentication and Profile Experience
+   - Sign in, manage sessions, and access a personalized user profile.
+
+5. Bookmarks and Reading History
+   - Save favorite stories and revisit previously read articles for a better user experience.
+
+## Project Highlights
+
+- Responsive and mobile-friendly interface
+- Bengali-language content and user experience
+- Clean modern design focused on readability
+- Fast navigation across homepage, categories, and article pages
+- Personalized features for returning users
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- npm or yarn
+- MongoDB instance
+- Environment variables for authentication and app configuration
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run the app locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is for educational and portfolio purposes.
